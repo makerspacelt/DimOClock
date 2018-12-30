@@ -7,11 +7,13 @@ flash: firmware/micropython.bin
 
 .PHONY: upload
 upload: $(FILES)
-	sudo nodemcu-uploader --baud 230400 upload $(FILES)
+	sudo ampy -d /dev/ttyUSB0 -b 230400 put $(FILES)
+	sudo ampy -d /dev/ttyUSB0 -b 230400 ls
 
 .PHONY: run
 run:
-	sudo nodemcu-uploader file do Main.lua
+	sudo ampy -d /dev/ttyUSB0 -b 230400 run main.py
+
 
 .PHONY: connect
 connect:
