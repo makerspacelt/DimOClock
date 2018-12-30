@@ -2,6 +2,4 @@
 
 set -x
 
-pip install adafruit-ampy
-
 
