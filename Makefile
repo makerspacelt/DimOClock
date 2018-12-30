@@ -1,18 +1,28 @@
 FILES=src/main.py
 
 
+.PHONY: erase
+erase:
+	sudo esptool.py -b 460800 erase_flash
+
 .PHONY: flash
 flash: firmware/micropython.bin
 	sudo esptool.py -b 460800 write_flash -fm dio 0x00000 $^
 
 .PHONY: upload
 upload: $(FILES)
-	sudo ampy -d /dev/ttyUSB0 -b 230400 put $(FILES)
-	sudo ampy -d /dev/ttyUSB0 -b 230400 ls
+
+.PHONY: $(FILES)
+$(FILES):
+	sudo ampy -p /dev/ttyUSB0 put $@
+
+.PHONY: ls
+ls:
+	sudo ampy -p /dev/ttyUSB0 ls
 
 .PHONY: run
 run:
-	sudo ampy -d /dev/ttyUSB0 -b 230400 run main.py
+	sudo ampy -p /dev/ttyUSB0 run main.py
 
 
 .PHONY: connect
