@@ -93,12 +93,13 @@ void showTimeOnDisplay(NTPClient t) {
     getDisplay().setBrightness(brightness+1);
 }
 void updateBrightness() {
-    int light = (1024-analogRead(PN_LDR))>>6;
+    int light = map( analogRead(PN_LDR) , -10, 400, 0, 15);
+    if (light > 15)
+        light = 15;
+
     brightness_raw -= brightness_raw>>4;
-    brightness_raw += (15-light);
-    brightness = (brightness_raw>>3)-1;
-    if (brightness > 15)
-        brightness = 15;
+    brightness_raw += light;
+    brightness = (brightness_raw>>4);
 }
 void loop () {
     updateNTP();
