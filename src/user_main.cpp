@@ -5,10 +5,10 @@
 
 #define PN_LDR A0
 
-#define ALARM 60*8+0
+#define ALARM 60*8+40
 
 
-byte brightness_raw;
+byte brightness_raw = 15;
 byte brightness;
 
 void setup () {
@@ -108,5 +108,6 @@ void loop () {
     updateBrightness();
 
     delay(100);
+    Serial.print(".");
 }
 

@@ -1,8 +1,5 @@
 #include "wifi.h"
 
-const char* ssid = "name";
-const char* password = "password";
-
 WiFiUDP ntpUDP;
 NTPClient ntp(ntpUDP, "europe.pool.ntp.org");
 
@@ -10,7 +7,7 @@ NTPClient ntp(ntpUDP, "europe.pool.ntp.org");
 void setupWifi() {
     Serial.print("Setting up wifi... ");
 
-    WiFi.begin(ssid, password);
+    //WiFi.begin("name", "password");
 
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
