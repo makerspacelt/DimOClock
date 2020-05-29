@@ -5,7 +5,7 @@
 
 #define PN_LDR A0
 
-#define ALARM 60*8+40
+#define ALARM 60*8+8;
 
 
 byte brightness_raw = 15;
