@@ -57,11 +57,11 @@ void drawSmallTime(byte hours, byte minutes, byte seconds, int x, int y) {
     byte m2 = minutes%10;
   
     //drawChar3x5(x+0  , y, brightness);
-    drawChar5x7(x+1 , y, h1);
-    drawChar5x7(x+7 , y, h2);
-    drawChar5x7(x   , y+8, sign);
-    drawChar3x5(x+5 , y+8, m1);
-    drawChar3x5(x+9 , y+8, m2);
+    drawChar5x7(x+0 , y, h1);
+    drawChar5x7(x+6 , y, h2);
+    drawChar3x5(x+0 , y+8, sign);
+    drawChar3x5(x+4 , y+8, m1);
+    drawChar3x5(x+8 , y+8, m2);
 
   /*
     // bin seconds
@@ -91,7 +91,7 @@ void drawBigTime(byte hours, byte minutes, int x, int y) {
 void showTimeOnDisplay(NTPClient t) {
     //getDisplay().clearScreen();
     drawBigTime(t.getHours(), t.getMinutes(), 0,0);
-    drawSmallTime(t.getHours(), t.getMinutes(), t.getSeconds(), 36,2);
+    drawSmallTime(t.getHours(), t.getMinutes(), t.getSeconds(), 37, 3);
     getMatrix().writeScreen();
     getMatrix().setBrightness(brightness+1);
 }
