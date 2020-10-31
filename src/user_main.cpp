@@ -53,14 +53,14 @@ void drawSmallTime(byte hours, byte minutes, byte seconds, int x, int y) {
     byte m1 = minutes/10;
     byte m2 = minutes%10;
   
-    drawChar3x5(x+0  , y, brightness);
-    drawChar3x5(x+4  , y, sign);
-    drawChar3x5(x+8  , y, h1);
-    drawChar3x5(x+12 , y, h2);
-    drawChar3x5(x+17 , y, m1);
-    drawChar3x5(x+21 , y, m2);
+    //drawChar3x5(x+0  , y, brightness);
+    drawChar5x7(x+1 , y, h1);
+    drawChar5x7(x+7 , y, h2);
+    drawChar5x7(x   , y+8, sign);
+    drawChar3x5(x+5 , y+8, m1);
+    drawChar3x5(x+9 , y+8, m2);
 
-    /*
+  /*
     // bin seconds
     seconds &= 0b111111; // 6 bytes (max 63); we have 6 leds to operate on;
     byte s1 = (seconds>>2)&0b1111;
@@ -79,16 +79,16 @@ void drawBigTime(byte hours, byte minutes, int x, int y) {
     byte m1 = minutes/10;
     byte m2 = minutes%10;
   
-    drawChar5x10(x+0  , y, h1);
-    drawChar5x10(x+6  , y, h2);
-    drawChar5x10(x+13 , y, m1);
-    drawChar5x10(x+19 , y, m2);
+    drawChar8x16(x+0  , y, h1);
+    drawChar8x16(x+9  , y, h2);
+    drawChar8x16(x+18 , y, m1);
+    drawChar8x16(x+27 , y, m2);
 }
 
 void showTimeOnDisplay(NTPClient t) {
     //getDisplay().clearScreen();
     drawBigTime(t.getHours(), t.getMinutes(), 0,0);
-    drawSmallTime(t.getHours(), t.getMinutes(), t.getSeconds(), 0,11);
+    drawSmallTime(t.getHours(), t.getMinutes(), t.getSeconds(), 36,2);
     getMatrix().writeScreen();
     getMatrix().setBrightness(brightness+1);
 }
