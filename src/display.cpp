@@ -68,6 +68,18 @@ void drawChar3x5(int x, int y, int index) {
     }
 }
 
+void drawChar5x7(int x, int y, int index) {
+    int offset = index*FONT_5X7_BYTES_PER_CHAR;
+    int font_w = 5;
+    int font_h = 7;
+
+    for (int w=0; w<font_w; w++) {
+        for (int h=0; h<font_h; h++) {
+            drawPixelAt(x+w, y+h,  (FONT_5X7[offset+h] & 1<<(font_w-1-w))  );
+        }
+    }
+}
+
 void drawChar5x10(int x, int y, int index) {
     int offset = index*FONT_5X10_BYTES_PER_CHAR;
     int font_w = 5;
@@ -76,6 +88,18 @@ void drawChar5x10(int x, int y, int index) {
     for (int w=0; w<font_w; w++) {
         for (int h=0; h<font_h; h++) {
             drawPixelAt(x+w, y+h,  (FONT_5X10[offset+h] & 1<<(font_w-1-w))  );
+        }
+    }
+}
+
+void drawChar8x16(int x, int y, int index) {
+    int offset = index*FONT_8X16_BYTES_PER_CHAR;
+    int font_w = 8;
+    int font_h = 16;
+
+    for (int w=0; w<font_w; w++) {
+        for (int h=0; h<font_h; h++) {
+            drawPixelAt(x+w, y+h,  (FONT_8X16[offset+h] & 1<<(font_w-1-w))  );
         }
     }
 }
