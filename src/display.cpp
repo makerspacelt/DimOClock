@@ -1,27 +1,27 @@
 #include "display.h"
 
-Adafruit_HT1632 display = Adafruit_HT1632(HT_DATA, HT_WR, HT_CS);
+Adafruit_HT1632LEDMatrix matrix = Adafruit_HT1632LEDMatrix(HT_DATA, HT_WR, HT_CS1, HT_CS2);
 
 
 void setupDisplay() {
     Serial.print("Setting up display... ");
 
-    display.begin(ADA_HT1632_COMMON_16NMOS);
+    matrix.begin(ADA_HT1632_COMMON_16NMOS);
 
     for (int y=0; y<TOTAL_HEIGHT; y++) {
         for (int x=0; x<TOTAL_WIDTH; x++) {
             setPixelAt(x, y);
-            delay(5);
-            display.writeScreen();
+            delay(1);
+            matrix.writeScreen();
         }
     }
     delay(500);
-    display.clearScreen();
+    matrix.clearScreen();
     Serial.println();
 }
 
-Adafruit_HT1632 getDisplay() {
-    return display;
+Adafruit_HT1632LEDMatrix getMatrix() {
+    return matrix;
 }
 
 void setPixelAt(int x, int y) {
@@ -34,12 +34,22 @@ void clrPixelAt(int x, int y) {
 
 void drawPixelAt(int x, int y, bool set) {
     if (set) {
-        display.setPixel(pixelAt(x,y));
+        matrix.setPixel(pixelAtX(x,y),pixelAtY(x,y));
     } else {
-        display.clrPixel(pixelAt(x,y));
+        matrix.clrPixel(pixelAtX(x,y),pixelAtY(x,y));
     }
 }
 
+// New Magic (using matrix)
+// for convertig normal x,y to magical x,y
+int pixelAtX(int x, int y) {
+    return (y&7)+(x>>3<<3);
+}
+int pixelAtY(int x, int y) {
+    return (x&7)+(y>>3<<3);
+}
+// Old Magic (using display)
+// for converting x,y to pixel address
 int pixelAt(int x, int y) {
     if (y<=7) y=7-y;
     if (y>7) y=7-y+(TOTAL_HEIGHT);

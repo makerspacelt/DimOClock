@@ -89,8 +89,8 @@ void showTimeOnDisplay(NTPClient t) {
     //getDisplay().clearScreen();
     drawBigTime(t.getHours(), t.getMinutes(), 0,0);
     drawSmallTime(t.getHours(), t.getMinutes(), t.getSeconds(), 0,11);
-    getDisplay().writeScreen();
-    getDisplay().setBrightness(brightness+1);
+    getMatrix().writeScreen();
+    getMatrix().setBrightness(brightness+1);
 }
 void updateBrightness() {
     int light = map( analogRead(PN_LDR) , -10, 400, 0, 15);
