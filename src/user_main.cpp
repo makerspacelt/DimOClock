@@ -4,6 +4,7 @@
 #include "display.h"
 
 #define PN_LDR A0
+#define PN_TZ 5
 
 #define ALARM 60*8+8;
 
@@ -20,9 +21,11 @@ void setup () {
     pinMode(PN_LDR, INPUT);
     digitalWrite(PN_LDR, HIGH);
 
+    pinMode(PN_TZ, INPUT_PULLUP);
+
     setupDisplay();
     setupWifi();
-    setupNTP();
+    setupNTP(2+digitalRead(PN_TZ));
 }
 
 

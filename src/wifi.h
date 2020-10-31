@@ -7,7 +7,7 @@
 #include <NTPClient.h>
 
 void setupWifi();
-void setupNTP();
+void setupNTP(int tz);
 void updateNTP();
 
 NTPClient getNTPClient();

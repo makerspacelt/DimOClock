@@ -16,10 +16,10 @@ void setupWifi() {
     Serial.println();
 }
 
-void setupNTP() {
+void setupNTP(int tz) {
     Serial.print("Setting up NTP... ");
     ntp.begin();
-    ntp.setTimeOffset(3*60*60);
+    ntp.setTimeOffset(tz*60*60);
     ntp.update();
     Serial.println(ntp.getFormattedTime());
 }
