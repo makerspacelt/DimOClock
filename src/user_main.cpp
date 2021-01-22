@@ -82,10 +82,10 @@ void drawBigTime(byte hours, byte minutes, int x, int y) {
     byte m1 = minutes/10;
     byte m2 = minutes%10;
   
-    drawChar8x16(x+0  , y, h1);
-    drawChar8x16(x+9  , y, h2);
-    drawChar8x16(x+18 , y, m1);
-    drawChar8x16(x+27 , y, m2);
+    drawChar7x14(x+0  , y, h1);
+    drawChar7x14(x+9  , y, h2);
+    drawChar7x14(x+18 , y, m1);
+    drawChar7x14(x+27 , y, m2);
 }
 
 void showTimeOnDisplay(NTPClient t) {

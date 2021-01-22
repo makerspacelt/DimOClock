@@ -10,6 +10,7 @@
 #include "font_3x5.h"
 #include "font_5x7.h"
 #include "font_5x10.h"
+#include "font_7x14.h"
 #include "font_8x16.h"
 
 #define HT_DATA 13
@@ -31,6 +32,7 @@ void drawPixelAt(int x, int y, bool set);
 void drawChar3x5(int x, int y ,int index);
 void drawChar5x7(int x, int y ,int index);
 void drawChar5x10(int x, int y ,int index);
+void drawChar7x14(int x, int y ,int index);
 void drawChar8x16(int x, int y ,int index);
 
 Adafruit_HT1632LEDMatrix getMatrix();

@@ -92,6 +92,18 @@ void drawChar5x10(int x, int y, int index) {
     }
 }
 
+void drawChar7x14(int x, int y, int index) {
+    int offset = index*FONT_7X14_BYTES_PER_CHAR;
+    int font_w = 7;
+    int font_h = 14;
+
+    for (int w=0; w<font_w; w++) {
+        for (int h=0; h<font_h; h++) {
+            drawPixelAt(x+w, y+h,  (FONT_7X14[offset+h] & 1<<(font_w-1-w))  );
+        }
+    }
+}
+
 void drawChar8x16(int x, int y, int index) {
     int offset = index*FONT_8X16_BYTES_PER_CHAR;
     int font_w = 8;
